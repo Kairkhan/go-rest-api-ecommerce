@@ -3,7 +3,6 @@ package main_test
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -166,7 +165,7 @@ func TestUpdate(t *testing.T) {
 	var m map[string]interface{}
 	json.Unmarshal(response.Body.Bytes(), &m)
 
-	if m["id"] == originalProduct["id"] {
+	if m["id"] != originalProduct["id"] {
 		t.Errorf("Expected the id to remain the same (%v). Got %v", originalProduct["id"], m["id"])
 	}
 
